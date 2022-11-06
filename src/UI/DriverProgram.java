@@ -3,6 +3,7 @@ package UI;
 import java.util.Scanner;
 
 import Controller.*;
+import Model.ICancion;
 import Model.Ipod;
 
 import static Controller.Actions.*;
@@ -58,6 +59,23 @@ public class DriverProgram {
 
                 case 4:
                     previoussong(ipod);
+
+                case 5:
+                    System.out.println("¿Que cancion desea agregar a sus favoritas?");
+                    int i = 1;
+                    for (ICancion cancion: ipod.getCanciones()){
+                        System.out.println(i+") Titulo: "+cancion.getTitle()+" Artista: "+cancion.getArtist());
+                        i++;
+                    }
+                    System.out.println("Ingrese numero de la lista: ");
+                    int index = in.nextInt();
+
+                    addSongtofavorites(ipod,ipod.getCanciones().get(index-1));
+                    break;
+
+                case 6:
+                    playfavsong(ipod, in);
+                    break;
 
 
             }

@@ -9,9 +9,13 @@ import java.util.Scanner;
 
 public class Actions {
 
-    public static void addSongtofavorites(Ipod ipod, int index, Cancion cancion) throws Exception {
+    public static void addSongtofavorites(Ipod ipod,ICancion cancion) throws Exception {
         try {
-            ipod.addToFavorite(cancion);
+            if (!(ipod.getFavs().size() == 10)) {
+                ipod.addToFavorite(cancion);
+            }else {
+                System.out.println("Lista llena: maximo 10 canciones");
+            }
         }catch (Exception exception){
             System.out.println("Error al agregar cancion");
         }
@@ -107,6 +111,29 @@ public class Actions {
         System.out.println("Cancion actual parcial: "+ipod.getCanciones().get(ipod.getActualIndex()).getTitle());
 
     }
+
+    public static void playfavsong(Ipod ipod,Scanner in) throws Exception{
+        int i = 1;
+        for(ICancion fav: ipod.getFavs()){
+            System.out.println(i+") Titulo: "+fav.getTitle());
+
+        }
+        System.out.println("¿Que cancion desea reproducir");
+        int index = in.nextInt();
+        ICancion cancionfav = ipod.getFavs().get(index-1);
+
+
+        for (ICancion cancion: ipod.getCanciones()){
+            if (cancion.getTitle().equalsIgnoreCase(cancionfav.getTitle()) && cancion.getArtist().equalsIgnoreCase(cancionfav.getArtist())) {
+                ipod.setActualIndex(cancion.getID() - 1);
+
+            }
+        }
+        System.out.println("Cancion actual parcial: "+ipod.getCanciones().get(ipod.getActualIndex()).getTitle());
+
+    }
+
+
 
 
 

@@ -38,78 +38,78 @@ public class DriverProgram {
             System.out.println("9)Mostrar Status de Ipod");
             System.out.println("10)Eliminar cancion");
 
-            int opcion = in.nextInt();
 
-            if (ipod.isOn() && !(ipod.isIsblocked())) {
+                String seleccion = in.nextLine();
+                int opcion=12;
+                try {
+                    opcion = Integer.parseInt(seleccion);
+                }catch (Exception e){
+                    System.out.println("Valor invalido");
+                }
+
+                if (ipod.isOn() && !(ipod.isIsblocked())) {
+                    switch (opcion) {
+                        case 0:
+                            addSong(ipod, in);
+                            break;
+                        case 1:
+                            volumeup(ipod);
+                            break;
+
+                        case 2:
+                            volumedown(ipod);
+                            break;
+
+                        case 3:
+                            nextsong(ipod);
+                            break;
+
+
+                        case 4:
+                            previoussong(ipod);
+                            break;
+                        case 5:
+
+
+                            addSongtofavorites(ipod, in);
+
+                            break;
+
+                        case 6:
+                            playfavsong(ipod, in);
+                            break;
+
+
+                    }
+                }
+
                 switch (opcion) {
-                    case 0:
-                        addSong(ipod, in);
+                    case 7:
+                        ipod.SwitchONOFF(ipod.isOn());
                         break;
-                    case 1:
-                        volumeup(ipod);
-                        break;
-
-                    case 2:
-                        volumedown(ipod);
-                        break;
-
-                    case 3:
-                        nextsong(ipod);
-                        break;
-
-
-                    case 4:
-                        previoussong(ipod);
-
-                    case 5:
-                        System.out.println("¿Que cancion desea agregar a sus favoritas?");
-                        int i = 1;
-                        for (ICancion cancion : ipod.getCanciones()) {
-                            System.out.println(i + ") Titulo: " + cancion.getTitle() + " Artista: " + cancion.getArtist());
-                            i++;
+                    case 8:
+                        if (ipod.isOn()) {
+                            ipod.LockUnlockDevice(ipod.isIsblocked());
                         }
-                        System.out.println("Ingrese numero de la lista: ");
-                        int index = in.nextInt();
-
-                        addSongtofavorites(ipod, ipod.getCanciones().get(index - 1));
                         break;
+                    case 9:
+                        if (ipod.isOn()) {
+                            System.out.println(ipod.getStatus(ipod.isOn(), ipod.isIsblocked(), true, ipod.getCanciones().get(ipod.getActualIndex())));
 
-                    case 6:
-                        playfavsong(ipod, in);
+                        } else {
+                            System.out.println("Apagado");
+                        }
                         break;
-
+                    case 10:
+                        if (ipod.isOn() && !(ipod.isIsblocked())) {
+                            deleteSong(ipod, in);
+                        }
+                        break;
 
                 }
-            }
 
-            switch (opcion){
-                case 7:
-                    ipod.SwitchONOFF(ipod.isOn());
-                    break;
-                case 8:
-                    if (ipod.isOn()) {
-                        ipod.LockUnlockDevice(ipod.isIsblocked());
-                    }
-                    break;
-                case 9:
-                    if (ipod.isOn()){
-                        System.out.println(ipod.getStatus(ipod.isOn(),ipod.isIsblocked(),true,ipod.getCanciones().get(ipod.getActualIndex())));
-
-                    }else{
-                        System.out.println("Apagado");
-                    }
-                    break;
-                case 10:
-                    if (ipod.isOn() && !(ipod.isIsblocked())){
-                        deleteSong(ipod, in);
-                    }
-                    break;
-
-            }
         }
 
+
     }
-
-
-
 }

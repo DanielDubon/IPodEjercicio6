@@ -76,6 +76,38 @@ public class Actions {
     }
 
 
+    public static void nextsong(Ipod ipod) throws Exception {
+
+        try {
+            if (!(ipod.getActualIndex() == ipod.getCanciones().size()-1)) {
+                ipod.setActualIndex(ipod.Next(ipod.getActualIndex()));
+            }else{
+                ipod.setActualIndex(0);
+            }
+
+        }catch (Exception e){
+            System.out.println("ALERTA: Error en pasar de cancion");
+        }
+        System.out.println("Cancion actual parcial: "+ipod.getCanciones().get(ipod.getActualIndex()).getTitle());
+
+    }
+
+    public static void previoussong(Ipod ipod) throws Exception {
+
+        try {
+            if (!(ipod.getActualIndex() == 0)){
+                ipod.setActualIndex(ipod.Prev(ipod.getActualIndex()));
+            }else{
+                ipod.setActualIndex(ipod.getCanciones().size()-1);
+            }
+
+        }catch (Exception e){
+            System.out.println("ALERTA: Error en pasar de cancion");
+        }
+        System.out.println("Cancion actual parcial: "+ipod.getCanciones().get(ipod.getActualIndex()).getTitle());
+
+    }
+
 
 
 

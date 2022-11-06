@@ -34,6 +34,8 @@ public class DriverProgram {
             System.out.println("6)Reproducir cancion de favoritas");
             System.out.println("7)Boton de encendido/apagado");
             System.out.println("8)Boton de bloqueo/desbloqueo");
+            System.out.println("9)Agregar cancion");
+
             int opcion = in.nextInt();
 
 
@@ -50,6 +52,13 @@ public class DriverProgram {
                     break;
 
                 case 3:
+                    nextsong(ipod);
+                    break;
+
+
+                case 4:
+                    previoussong(ipod);
+
 
             }
         }

@@ -13,18 +13,31 @@ public class Ipod implements IIpod_simulator {
 
     private int actualindex=0;
     private float volume = 0;
-    private boolean isblocked;
-    private boolean isOn;
+    private boolean isblocked = false;
+    private boolean isOn= true;
 
 
     @Override
     public boolean SwitchONOFF(boolean actual_state) {
-    return false;
+      if (actual_state){
+          isOn = false;
+          return false;
+      }else {
+          isOn = true;
+          return true;
+      }
+
     }
 
     @Override
     public boolean LockUnlockDevice(boolean actual_locked_state) {
-        return false;
+        if (actual_locked_state){
+            isblocked = false;
+            return false;
+        }else {
+            isblocked = true;
+            return true;
+        }
     }
 
     @Override
@@ -90,8 +103,28 @@ public class Ipod implements IIpod_simulator {
 
     @Override
     public String getStatus(boolean _isON, boolean _isLocked, boolean _isPlaying, ICancion _actualSong) {
+        String estado1="";
+        if (_isON){
+             estado1 = estado1+"Encendido"+", ";
 
-        return null;
+        }else {
+            estado1 = estado1+"Apagado"+", ";}
+
+        if (_isLocked){
+            estado1 = estado1+"Bloqueado"+", ";
+
+        }else {
+            estado1 = estado1+"Desbloqueado"+", ";}
+
+        if (_isPlaying){
+            estado1 = estado1+"Reproduciendo"+", ";
+        }else {estado1 = estado1+"Pausada"+", ";}
+
+        estado1 = estado1 +  _actualSong.getTitle();
+
+
+        String estado = estado1;
+        return estado;
     }
 
     @Override
@@ -141,5 +174,21 @@ public class Ipod implements IIpod_simulator {
 
     public void setFavs(ArrayList<ICancion> favs) {
         this.favs = favs;
+    }
+
+    public boolean isIsblocked() {
+        return isblocked;
+    }
+
+    public void setIsblocked(boolean isblocked) {
+        this.isblocked = isblocked;
+    }
+
+    public boolean isOn() {
+        return isOn;
+    }
+
+    public void setOn(boolean on) {
+        isOn = on;
     }
 }

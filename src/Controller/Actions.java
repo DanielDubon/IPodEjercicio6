@@ -66,8 +66,21 @@ public class Actions {
         ipod.addSongToList(titulo, artista,album,duracion,id);
 
         for (ICancion cancion: ipod.getCanciones()){
-            System.out.println("Canciones: "+cancion.getTitle());
+            System.out.println("Canciones: "+cancion.getID()+" "+cancion.getTitle());
         }
+
+    }
+
+    public static void deleteSong(Ipod ipod, Scanner in) throws Exception {
+            int i = 1;
+        for (ICancion cancion: ipod.getCanciones()){
+            System.out.println(i+") Titulo: "+cancion.getTitle() + "Artista: "+ cancion.getArtist());
+            i++;
+        }
+        System.out.println("¿Que cancion desea eliminar?");
+        int index = in.nextInt()-1;
+        ipod.deleteSongFromList(index);
+
 
     }
 
@@ -113,24 +126,27 @@ public class Actions {
     }
 
     public static void playfavsong(Ipod ipod,Scanner in) throws Exception{
-        int i = 1;
-        for(ICancion fav: ipod.getFavs()){
-            System.out.println(i+") Titulo: "+fav.getTitle());
-
-        }
-        System.out.println("¿Que cancion desea reproducir");
-        int index = in.nextInt();
-        ICancion cancionfav = ipod.getFavs().get(index-1);
-
-
-        for (ICancion cancion: ipod.getCanciones()){
-            if (cancion.getTitle().equalsIgnoreCase(cancionfav.getTitle()) && cancion.getArtist().equalsIgnoreCase(cancionfav.getArtist())) {
-                ipod.setActualIndex(cancion.getID() - 1);
+        if (!(ipod.getFavs().isEmpty())) {
+            int i = 1;
+            for (ICancion fav : ipod.getFavs()) {
+                System.out.println(i + ") Titulo: " + fav.getTitle());
 
             }
-        }
-        System.out.println("Cancion actual parcial: "+ipod.getCanciones().get(ipod.getActualIndex()).getTitle());
+            System.out.println("¿Que cancion desea reproducir");
+            int index = in.nextInt();
+            ICancion cancionfav = ipod.getFavs().get(index - 1);
 
+
+            for (ICancion cancion : ipod.getCanciones()) {
+                if (cancion.getTitle().equalsIgnoreCase(cancionfav.getTitle()) && cancion.getArtist().equalsIgnoreCase(cancionfav.getArtist())) {
+                    ipod.setActualIndex(cancion.getID() - 1);
+
+                }
+            }
+            System.out.println("Cancion actual parcial: " + ipod.getCanciones().get(ipod.getActualIndex()).getTitle());
+        }else {
+            System.out.println("Alerta: No hay canciones favoritas");
+        }
     }
 
 

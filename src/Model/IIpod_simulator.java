@@ -1,4 +1,4 @@
-package Controller; /**
+package Model; /**
  * 
  */
 
@@ -38,7 +38,7 @@ public interface IIpod_simulator {
 	 * @param volume 
 	 * @return
 	 */
-	public float setVolume(float volume);
+	public void setVolume(float volume);
 	
 	/***
 	 * Adelanta una cancion en la lista y la devuelve

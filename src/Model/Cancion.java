@@ -8,7 +8,13 @@ public class Cancion implements ICancion{
     private String duration;
     private int id;
 
-
+    public Cancion(String title, String artist, String album, String duration, int id){
+        this.title = title;
+        this.artist = artist;
+        this.album = album;
+        this.duration = duration;
+        this.id = id;
+    }
     @Override
     public void setTitle(String _title) {
         this.title = _title;
@@ -21,7 +27,7 @@ public class Cancion implements ICancion{
 
     @Override
     public void setArtist(String _artist) {
-        this.artist = artist;
+        this.artist = _artist;
     }
 
     @Override
@@ -41,7 +47,7 @@ public class Cancion implements ICancion{
 
     @Override
     public void setDuration(String _duration) {
-        this.duration = duration;
+        this.duration = _duration;
     }
 
     @Override

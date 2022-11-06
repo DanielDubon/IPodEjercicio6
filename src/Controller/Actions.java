@@ -1,7 +1,11 @@
 package Controller;
 
 import Model.Cancion;
+import Model.ICancion;
 import Model.Ipod;
+
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Actions {
 
@@ -27,6 +31,48 @@ public class Actions {
         }catch (Exception e){
 
         }
+    }
+
+    public static void volumedown(Ipod ipod){
+        try {
+            if (!(ipod.getVolume() == 0f)){
+                ipod.setVolume(ipod.getVolume()-0.5f);
+                System.out.println("Volumen actual: "+ipod.getVolume());
+            }else {
+                System.out.println("Volumen minimo alcanzado");
+            }
+
+        }catch (Exception e){
+
+        }
+    }
+
+    public static void addSong(Ipod ipod, Scanner in) throws Exception {
+        in.nextLine();
+        System.out.println("Titulo de la cancion: ");
+        String titulo = in.nextLine();
+        System.out.println("Artista de la cancion: ");
+        String artista = in.nextLine();
+        System.out.println("Album de la cancion: ");
+        String album = in.nextLine();
+        System.out.println("Duracion de la cancion: ");
+        String duracion = in.nextLine();
+
+        int id = generateIDsong(ipod.getCanciones());
+        ipod.addSongToList(titulo, artista,album,duracion,id);
+
+        for (ICancion cancion: ipod.getCanciones()){
+            System.out.println("Canciones: "+cancion.getTitle());
+        }
+
+    }
+
+    public static int generateIDsong(ArrayList<ICancion> canciones){
+        int id = 1;
+        for (ICancion cancion: canciones){
+            id = id +1;
+        }
+        return id;
     }
 
 

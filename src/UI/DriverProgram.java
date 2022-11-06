@@ -10,14 +10,14 @@ import static Controller.Actions.*;
 public class DriverProgram {
     private static boolean simulation = true;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         simulation();
 
     }
 
 
-    public static void  simulation(){
+    public static void  simulation() throws Exception {
         Ipod ipod = new Ipod();
         System.out.println("-BIENVENIDO A LA SIMULACION DEL IPOD-");
         Scanner in = new Scanner(System.in);
@@ -25,6 +25,7 @@ public class DriverProgram {
 
         while (simulation){
             System.out.println("¿Que desea realizar?");
+            System.out.println("0)Agregar cancion");
             System.out.println("1)Subir volumen");
             System.out.println("2)Bajar volumen");
             System.out.println("3)Cancion siguiente");
@@ -34,10 +35,21 @@ public class DriverProgram {
             System.out.println("7)Boton de encendido/apagado");
             System.out.println("8)Boton de bloqueo/desbloqueo");
             int opcion = in.nextInt();
+
+
             switch (opcion){
+                case 0:
+                    addSong(ipod, in);
+                    break;
                 case 1:
                     volumeup(ipod);
-                break;
+                    break;
+
+                case 2:
+                    volumedown(ipod);
+                    break;
+
+                case 3:
 
             }
         }

@@ -126,4 +126,20 @@ public class Ipod implements IIpod_simulator {
     public void deleteSongFromTop10(int index) throws Exception {
         favs.remove(index);
     }
+
+    public ArrayList<ICancion> getCanciones() {
+        return canciones;
+    }
+
+    public void setCanciones(ArrayList<ICancion> canciones) {
+        this.canciones = canciones;
+    }
+
+    public ArrayList<ICancion> getFavs() {
+        return favs;
+    }
+
+    public void setFavs(ArrayList<ICancion> favs) {
+        this.favs = favs;
+    }
 }

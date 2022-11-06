@@ -25,7 +25,9 @@ public class DriverProgram {
 
 
         while (simulation) {
-            System.out.println("¿Que desea realizar?");
+            ipodUI(ipod);
+
+            System.out.println("Que desea realizar?");
             System.out.println("0)Agregar cancion");
             System.out.println("1)Subir volumen");
             System.out.println("2)Bajar volumen");
@@ -37,6 +39,9 @@ public class DriverProgram {
             System.out.println("8)Boton de bloqueo/desbloqueo");
             System.out.println("9)Mostrar Status de Ipod");
             System.out.println("10)Eliminar cancion");
+            System.out.println("11)Eliminar favorita");
+            System.out.println("12)Pausar/Reproducir");
+
 
 
                 String seleccion = in.nextLine();
@@ -79,6 +84,12 @@ public class DriverProgram {
                             playfavsong(ipod, in);
                             break;
 
+                        case 11:
+                            deletefav(ipod,in);
+                            break;
+                        case 12:
+                            pausebutton(ipod);
+
 
                     }
                 }
@@ -94,7 +105,7 @@ public class DriverProgram {
                         break;
                     case 9:
                         if (ipod.isOn()) {
-                            System.out.println(ipod.getStatus(ipod.isOn(), ipod.isIsblocked(), true, ipod.getCanciones().get(ipod.getActualIndex())));
+                            System.out.println(ipod.getStatus(ipod.isOn(), ipod.isIsblocked(), ipod.isPlaying(), ipod.getCanciones().get(ipod.getActualIndex())));
 
                         } else {
                             System.out.println("Apagado");

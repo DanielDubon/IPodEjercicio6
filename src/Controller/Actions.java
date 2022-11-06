@@ -106,7 +106,7 @@ public class Actions {
         if (!(ipod.getCanciones().isEmpty())) {
             int i = 1;
         for (ICancion cancion: ipod.getCanciones()){
-            System.out.println(i+") Titulo: "+cancion.getTitle() + "Artista: "+ cancion.getArtist());
+            System.out.println(i+") Titulo: "+cancion.getTitle() + " Artista: "+ cancion.getArtist());
             i++;
         }
         System.out.println("¿Que cancion desea eliminar?");
@@ -191,6 +191,81 @@ public class Actions {
         }
     }
 
+    public static void deletefav(Ipod ipod, Scanner in) throws Exception {
+        if (!(ipod.getFavs().isEmpty())) {
+            int i = 1;
+            for (ICancion cancion: ipod.getFavs()){
+                System.out.println(i+") Titulo: "+cancion.getTitle() + " Artista: "+ cancion.getArtist());
+                i++;
+            }
+            System.out.println("¿Que cancion desea eliminar?");
+            int index = in.nextInt()-1;
+            in.nextLine();
+            ipod.deleteSongFromTop10(index);
+
+        }else {
+            System.out.println("Alerta: No hay canciones agregue una");
+        }
+
+    }
+
+
+   public static void pausebutton(Ipod ipod){
+        if (ipod.isPlaying()){
+            ipod.setPlaying(false);
+        }else{
+            ipod.setPlaying(true);
+        }
+
+   }
+
+   public static void ipodUI(Ipod ipod) {
+
+       System.out.println(" ");
+       System.out.println("++++++++++++IPOD+++++++++++++");
+       System.out.println(" ");
+       if (!(ipod.isOn())) {
+           System.out.println("-IPOD APAGADO-");
+       }
+       if (ipod.isIsblocked()){
+           System.out.println("-IPOD BLOQUEADO-");
+       }
+       System.out.println(" ");
+       System.out.println("***TUS CANCIONES***");
+       if (!(ipod.getCanciones().isEmpty())){
+           int i = 1;
+       for (ICancion cancion : ipod.getCanciones()) {
+           System.out.println(i + ") " + cancion.getTitle() + " " + cancion.getArtist());
+           i++;
+       }
+   }
+       System.out.println("*******************");
+       System.out.println(" ");
+       System.out.println("***TU TOP 10***");
+       if (!(ipod.getCanciones().isEmpty())) {
+           int j = 1;
+           for (ICancion cancion : ipod.getFavs()) {
+               System.out.println(j + ") " + cancion.getTitle() + " " + cancion.getArtist());
+               j++;
+           }
+       }
+       System.out.println("*******************");
+       System.out.println(" ");
+       System.out.println("***CANCION ACTUAL***");
+       if (!(ipod.getCanciones().isEmpty())) {
+           System.out.println("" + ipod.getCanciones().get(ipod.getActualIndex()).getTitle());
+           if (ipod.isPlaying()){
+               System.out.println("-Reproduciendo");
+               System.out.println("-Volumen: "+ipod.getVolume());
+           }else { System.out.println("-Pausada");}
+
+       }
+
+       System.out.println(" ");
+       System.out.println("+++++++++++++++++++++++++++++");
+       System.out.println(" ");
+
+   }
 
 
 

@@ -16,6 +16,8 @@ public class Ipod implements IIpod_simulator {
     private boolean isblocked = false;
     private boolean isOn= true;
 
+    private boolean isPlaying = true;
+
 
     @Override
     public boolean SwitchONOFF(boolean actual_state) {
@@ -190,5 +192,13 @@ public class Ipod implements IIpod_simulator {
 
     public void setOn(boolean on) {
         isOn = on;
+    }
+
+    public boolean isPlaying() {
+        return isPlaying;
+    }
+
+    public void setPlaying(boolean playing) {
+        isPlaying = playing;
     }
 }
